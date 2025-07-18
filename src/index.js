@@ -6,11 +6,12 @@
 // import { DB_NAME } from "./constants.js";
 import express from "express";
 import connectDB from "./db/db.js";
+import app from "./app.js";
 
 import dotenv from "dotenv"
 
-const app=express()
-
+// const app=express()
+ 
 // (async()=>{
 //     try {
 //         await mongoose.connect(`${process.env.MONGODB_URL}/${DB_NAME}`)

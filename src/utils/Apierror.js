@@ -3,7 +3,8 @@ class ApiError extends Error{
         message="something went wrong",
         errors=[],
         stack=""){
-            super(message)
+            //overwrite karne ke liye super keyword use karte hai
+            super(message)// isse parent class ko message mil jayega inheritance ke liye important hai
             this.statusCode=statusCode
             this.data=null
             this.message=message
@@ -21,3 +22,10 @@ class ApiError extends Error{
 }
 
  export {ApiError}
+
+
+
+ // Example of the usage of this utitility in the code
+ // if(!user){
+//  throw new ApiError(404,"user not found");
+// }
