@@ -30,3 +30,4 @@ router.route("/register").post(
     // refresh access token ka route
     router.route("refresh-token").post(refreshAccessToken); // middleware ki requirement nhi hai but agar if you have any other login then you can also do with the help of the middleware
     export default router;
+
