@@ -1,5 +1,5 @@
 import mongoose, {Schema} from "mongoose";
-import bcyrpt from "bcrypt"
+import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
 
 
@@ -37,10 +37,10 @@ const userSchema=new Schema({
 
     },
 
-    coverimage:{
-        type:String,
+    // coverImage:{
+    //     type:String,
 
-    },
+    // },
 
     watchHistory:[
         {
@@ -68,19 +68,19 @@ const userSchema=new Schema({
 
 
 userSchema.pre("save",async function(next){
-    if(this.isModified("password")) return next();
+    if(!this.isModified("password")) return next();
 
     
-    this.password= await bcyrpt.hash(this.password,10) //password ka encryption hogya
+    this.password= await bcrypt.hash(this.password,10) //password ka encryption hogya
     next();
 
 })//yahan per callback ka use nhi kiya ja sakta kyoki callback mein this ka access nhi hota
 // aur he humesha async hi hota hai
 
-userSchema.methods.isPasswordcorrect=async function name(password) {
-    return await bcyrpt.compare(password,this.password);//is method mein password and encrypted password dena hota hai
-    
+userSchema.methods.isPasswordCorrect = async function (password) {
+    return await bcrypt.compare(password, this.password);
 }
+
 
 userSchema.methods.generateAccessToken=function(){
    return jwt.sign(
